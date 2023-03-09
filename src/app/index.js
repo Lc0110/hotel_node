@@ -1,0 +1,31 @@
+const Koa = require("koa");
+const cors = require("@koa/cors");
+const bodyParser = require("koa-bodyparser");
+const adminRouter = require("../router/admin_router");
+const loginRouter = require("../router/login_router");
+const usermenuRouter = require("../router/usermenu_router");
+const mainRouter = require("../router/main_router");
+const advertRouter = require("../router/advert_router");
+const classifyRouter = require("../router/classify_router");
+const evaRouter = require("../router/eva_router");
+const guestRouter = require("../router/guest_router");
+const orderRouter = require("../router/order.router");
+const roomRouter = require("../router/room_router");
+const static = require("koa-static");
+
+const app = new Koa();
+app.use(static("./upload"));
+app.use(cors());
+app.use(bodyParser());
+app.use(adminRouter.routes());
+app.use(usermenuRouter.routes());
+app.use(loginRouter.routes());
+app.use(mainRouter.routes());
+app.use(advertRouter.routes());
+app.use(classifyRouter.routes());
+app.use(evaRouter.routes());
+app.use(guestRouter.routes());
+app.use(orderRouter.routes());
+app.use(roomRouter.routes());
+
+module.exports = app;
