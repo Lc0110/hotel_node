@@ -3,6 +3,7 @@ const app = require("../app");
 app.on("error", (error, ctx) => {
   let code = 0;
   let message = "";
+  console.log(error);
   switch (error) {
     case "name_or_password_isRequired":
       code = -1001;
@@ -11,13 +12,25 @@ app.on("error", (error, ctx) => {
     case "name_isExist":
       code = -1002;
       message = "管理员已存在";
+      break;
     case "name_isNotExist":
       code = -1003;
       message = "该用户名不存在";
+      break;
     case "password_incorrect":
       code = -1004;
       message = "登录密码错误";
+      break;
+    case "admin_is_baned":
+      code = -1005;
+      message = "该管理员已经被禁止";
+      break;
+    case "rename_isExist":
+      code = -1006
+      message = "该用户已经存在"
+      break;
   }
 
   ctx.body = { code, message };
+  console.log(ctx.body);
 });

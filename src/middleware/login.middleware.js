@@ -13,6 +13,9 @@ const verifyLogin = async (ctx, next) => {
   if (admin.password !== password) {
     return ctx.app.emit("error", "password_incorrect", ctx);
   }
+  if (admin.status === 0) {
+    return ctx.app.emit("error", "admin_is_baned", ctx);
+  }
   await next();
 };
 

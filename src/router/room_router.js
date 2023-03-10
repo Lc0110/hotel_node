@@ -7,5 +7,6 @@ roomRouter.post("/create", roomController.create);
 roomRouter.post("/delete", roomController.delete);
 roomRouter.post("/edit", roomController.edit);
 roomRouter.post("/search", roomController.search);
+roomRouter.post("/change", roomController.changeStatus);
 
 module.exports = roomRouter;

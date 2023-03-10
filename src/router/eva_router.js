@@ -7,4 +7,5 @@ evaRouter.post("/evalist", evaController.getEvaList);
 evaRouter.post("/delete", evaController.deleteEva);
 evaRouter.post("/create", evaController.createEva);
 evaRouter.post("/search", evaController.search);
+evaRouter.post("/searchbyguest", evaController.searchByGid);
 module.exports = evaRouter;

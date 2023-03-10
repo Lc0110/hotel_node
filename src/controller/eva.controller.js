@@ -20,8 +20,8 @@ class MainController {
     };
   }
   async createEva(ctx, next) {
-    const { m_id,g_id, content } = ctx.request.body;
-    const result = await evaService.createeva(m_id,g_id, content);
+    const { m_id, g_id, content } = ctx.request.body;
+    const result = await evaService.createeva(m_id, g_id, content);
     ctx.body = {
       message: "创建成功！",
       data: result[0],
@@ -30,6 +30,14 @@ class MainController {
   async search(ctx, next) {
     const { mem_id } = ctx.request.body;
     const result = await evaService.search(mem_id);
+    ctx.body = {
+      message: "查询成功！",
+      data: result[0],
+    };
+  }
+  async searchByGid(ctx, next) {
+    const { g_id } = ctx.request.body;
+    const result = await evaService.searchByguest(g_id);
     ctx.body = {
       message: "查询成功！",
       data: result[0],

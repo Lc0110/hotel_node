@@ -45,6 +45,14 @@ class roomController {
       data: result[0],
     };
   }
+  async changeStatus(ctx, next) {
+    const { room_id, status } = ctx.request.body;
+    const result = await roomService.changeStatus(room_id, status);
+    ctx.body = {
+      message: "修改成功！",
+      data: result[0],
+    };
+  }
 }
 
 module.exports = new roomController();

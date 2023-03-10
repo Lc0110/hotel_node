@@ -42,6 +42,12 @@ class EvaServer {
     const result = await connection.execute(statement, [mem_id]);
     return result;
   }
+  async searchByguest(g_id) {
+    const statement =
+      "SELECT eva.* , member.avatarurl,member.nickname  FROM `eva` LEFT JOIN member ON eva.m_id = member.mem_id WHERE g_id = ?;";
+    const result = await connection.execute(statement, [g_id]);
+    return result;
+  }
 }
 
 module.exports = new EvaServer();

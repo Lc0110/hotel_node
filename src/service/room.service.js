@@ -45,7 +45,6 @@ class roomServer {
     if (status === "已入住" || status === "闲置") {
       status = status === "已入住" ? 1 : 0;
     }
-    console.log(status);
     const statement =
       "UPDATE room SET o_id =?,c_id=?,status =? WHERE room_id =?;";
     const result = await connection.execute(statement, [
@@ -59,6 +58,11 @@ class roomServer {
   async search(room_id) {
     const statement = "SELECT * FROM room WHERE room_id = ?;";
     const result = await connection.execute(statement, [room_id]);
+    return result;
+  }
+  async changeStatus(room_id, status) {
+    const statement = "UPDATE room SET status =? WHERE room_id = ?;";
+    const result = await connection.execute(statement, [status, room_id]);
     return result;
   }
 }
