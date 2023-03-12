@@ -21,17 +21,31 @@ class guestController {
     };
   }
   async create(ctx, next) {
-    const { c_id, imgurl, name, price, num, area, live, description } =
-      ctx.request.body;
+    const {
+      c_id,
+      imgurl,
+      name,
+      price,
+      area,
+      live,
+      description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window,
+    } = ctx.request.body;
     const result = await guestService.create(
       c_id,
       imgurl,
       name,
       price,
-      num,
       area,
       live,
-      description
+      description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window
     );
     ctx.body = {
       message: "创建成功！",
@@ -47,18 +61,33 @@ class guestController {
     };
   }
   async edit(ctx, next) {
-    const { gst_id, c_id, imgurl, name, price, num, area, live, description } =
-      ctx.request.body;
+    const {
+      gst_id,
+      c_id,
+      imgurl,
+      name,
+      price,
+      area,
+      live,
+      description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window,
+    } = ctx.request.body;
     const result = await guestService.edit(
       gst_id,
       c_id,
       imgurl,
       name,
       price,
-      num,
       area,
       live,
-      description
+      description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window
     );
     ctx.body = {
       message: "修改成功！",

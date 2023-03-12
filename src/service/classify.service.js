@@ -3,11 +3,11 @@ const connection = require("../database/database");
 class classifyServer {
   async getclassifyList(Isfirst, size, offset) {
     if (Isfirst === "") {
-      const statement = "SELECT * FROM classify;";
+      const statement = "SELECT * FROM classify ORDER BY sort ;";
       const result = await connection.query(statement);
       return result;
     }
-    const statement = "SELECT * FROM classify LIMIT ? OFFSET ? ;";
+    const statement = "SELECT * FROM classify ORDER BY sort LIMIT ? OFFSET ? ;";
     const result = await connection.query(statement, [size, offset]);
     return result;
   }

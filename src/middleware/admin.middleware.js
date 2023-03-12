@@ -12,6 +12,15 @@ const verifyAdmin = async (ctx, next) => {
   await next();
 };
 
+const verifyEdit = async (ctx, next) => {
+  const { username, phonenumber,status,password } = ctx.request.body;
+  if (!username || !password || !phonenumber || !status) {
+    return ctx.app.emit("error", "name_or_password_isRequired", ctx);
+  }
+  await next();
+};
+
 module.exports = {
   verifyAdmin,
+  verifyEdit
 };

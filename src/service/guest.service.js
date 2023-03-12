@@ -31,33 +31,68 @@ class guestServer {
     const result = await connection.execute(statement, [id]);
     return result;
   }
-  async create(c_id, imgurl, name, price, num, area, live, description) {
+  async create(
+    c_id,
+    imgurl,
+    name,
+    price,
+    area,
+    live,
+    description,
+    is_wifi,
+    is_tj,
+    is_kt,
+    is_window
+  ) {
     const statement =
-      "INSERT INTO guest (c_id,imgurl,name,price,num,area,live,description) VALUES (?,?,?,?,?,?,?,?);";
+      "INSERT INTO guest (c_id,imgurl,name,price,area,live,description,is_wifi,is_tj,is_kt,is_window) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     const result = await connection.execute(statement, [
       c_id,
       imgurl,
       name,
       price,
-      num,
       area,
       live,
       description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window,
     ]);
     return result;
   }
-  async edit(gst_id, c_id, imgurl, name, price, num, area, live, description) {
+  async edit(
+    gst_id,
+    c_id,
+    imgurl,
+    name,
+    price,
+    area,
+    live,
+    description,
+    is_wifi,
+    is_tj,
+    is_kt,
+    is_window
+  ) {
+    is_tj = is_tj === "是" ? 1 : 0;
+    is_kt = is_kt === "是" ? 1 : 0;
+    is_wifi = is_wifi === "是" ? 1 : 0;
+    is_window = is_window === "是" ? 1 : 0;
     const statement =
-      "UPDATE guest SET c_id =?,imgurl=?,name =? ,price =?,num=?,area=?,live=?,description=? WHERE gst_id =?;";
+      "UPDATE guest SET c_id =?,imgurl=?,name =? ,price =?,area=?,live=?,description=?,is_wifi=?,is_tj=?,is_kt=?,is_window=? WHERE gst_id =?;";
     const result = await connection.execute(statement, [
       c_id,
       imgurl,
       name,
       price,
-      num,
       area,
       live,
       description,
+      is_wifi,
+      is_tj,
+      is_kt,
+      is_window,
       gst_id,
     ]);
     return result;

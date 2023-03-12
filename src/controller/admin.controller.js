@@ -35,17 +35,18 @@ class AdminController {
   async edit(ctx, next) {
     const { adm_id, username, phonenumber, status, password } =
       ctx.request.body;
-    let newStatus = "";
-    if (status === "启用") {
-      newStatus = 1;
-    } else {
-      newStatus = 0;
-    }
+    console.log(ctx.request.body);
+    // let newStatus = "";
+    // if (status === "启用") {
+    //   newStatus = 1;
+    // } else {
+    //   newStatus = 0;
+    // }
     const result = await adminService.edit(
       adm_id,
       username,
       phonenumber,
-      newStatus,
+      status,
       password
     );
     ctx.body = {

@@ -7,7 +7,7 @@ app.on("error", (error, ctx) => {
   switch (error) {
     case "name_or_password_isRequired":
       code = -1001;
-      message = "用户名密码不能为空";
+      message = "信息不能为空";
       break;
     case "name_isExist":
       code = -1002;
@@ -26,9 +26,16 @@ app.on("error", (error, ctx) => {
       message = "该管理员已经被禁止";
       break;
     case "rename_isExist":
-      code = -1006
-      message = "该用户已经存在"
+      code = -1006;
+      message = "该用户已经存在";
       break;
+    case "date_error":
+      code = -1007;
+      message = "日期输入错误";
+      break;
+    case "none_room":
+      code = -1008;
+      message = "房间不存在";
   }
 
   ctx.body = { code, message };

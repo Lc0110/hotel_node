@@ -1,12 +1,11 @@
 const verifyCreate = async (ctx, next) => {
-  const { imgurl, sort, status } = ctx.request.body;
-  if (!imgurl || !sort || !status) {
+  const { name, sort } = ctx.request.body;
+  if (!name || !sort) {
     return ctx.app.emit("error", "name_or_password_isRequired", ctx);
   }
   await next();
 };
 
-
 module.exports = {
-  verifyCreate
+  verifyCreate,
 };

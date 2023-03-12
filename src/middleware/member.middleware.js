@@ -34,8 +34,8 @@ const verifyRegister = async (ctx, next) => {
 
 const verifyEdit = async (ctx, next) => {
   console.log(ctx.request.body);
-  const {realname, phonenumber, gender } = ctx.request.body;
-  if (!realname || !phonenumber || !gender) {
+  const { realname, phonenumber } = ctx.request.body;
+  if (!realname || !phonenumber) {
     return ctx.app.emit("error", "name_or_password_isRequired", ctx);
   }
   await next();

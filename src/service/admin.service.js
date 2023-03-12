@@ -40,6 +40,7 @@ class AdminServer {
     return values;
   }
   async delete(id) {
+    console.log(id);
     const statement = "DELETE FROM admin WHERE adm_id = ?;";
     const result = await connection.execute(statement, [id]);
     return result;
