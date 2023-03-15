@@ -94,6 +94,20 @@ class guestController {
       data: result[0],
     };
   }
+  async getData(ctx, next) {
+    const result = await guestService.get();
+    ctx.body = {
+      message: "获取成功",
+      data: result[0],
+    };
+  }
+  async getSevenData(ctx, next) {
+    const result = await guestService.getSevenData();
+    ctx.body = {
+      message: "获取成功",
+      data: result[0],
+    };
+  }
 }
 
 module.exports = new guestController();

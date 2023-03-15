@@ -95,6 +95,18 @@ class orderServer {
     const result = await connection.execute(statement, [status, ord_id]);
     return result;
   }
+  async get() {
+    const statement =
+      "SELECT COUNT(*) as count FROM `order` WHERE date_sub(curdate(), interval 7 day) <= date(createAt);";
+    const result = await connection.query(statement);
+    return result;
+  }
+  async getSevenData() {
+    const statement =
+      "SELECT date_diffs.date_diff, IFNULL(COUNT(`order`.ord_id), 0) AS record_count FROM ( SELECT 1 AS date_diff UNION ALL SELECT 2 AS date_diff UNION ALL SELECT 3 AS date_diff UNION ALL SELECT 4 AS date_diff UNION ALL SELECT 5 AS date_diff UNION ALL SELECT 6 AS date_diff UNION ALL SELECT 7 AS date_diff ) AS date_diffs LEFT JOIN `order` ON DATEDIFF(curdate(), `order`.createAt) = date_diffs.date_diff AND `order`.createAt >= DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) GROUP BY date_diffs.date_diff;";
+    const result = await connection.query(statement);
+    return result;
+  }
 }
 
 module.exports = new orderServer();

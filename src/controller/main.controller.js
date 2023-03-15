@@ -69,6 +69,20 @@ class MainController {
       data: result[0],
     };
   }
+  async getData(ctx, next){
+    const result = await memberService.get();
+    ctx.body ={
+      message : "获取成功",
+      data: result[0]
+    }
+  }
+  async getSevenData(ctx, next){
+    const result = await memberService.getSevenData();
+    ctx.body ={
+      message : "获取成功",
+      data: result[0]
+    }
+  }
 }
 
 module.exports = new MainController();

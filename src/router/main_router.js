@@ -14,4 +14,6 @@ mainRouter.post("/deletemember", mainController.deleteMember);
 mainRouter.post("/createmember", verifyRegister, mainController.createMember);
 mainRouter.post("/login", verifyMember, mainController.login);
 mainRouter.post("/edit", verifyEdit,mainController.edit);
+mainRouter.post("/getdata",mainController.getData)
+mainRouter.post("/getSevenData",mainController.getSevenData)
 module.exports = mainRouter;

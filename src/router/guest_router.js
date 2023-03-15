@@ -8,5 +8,7 @@ guestRouter.post("/create", verifyCreate, guestController.create);
 guestRouter.post("/delete", guestController.delete);
 guestRouter.post("/edit", verifyCreate, guestController.edit);
 guestRouter.post("/search", guestController.search);
+guestRouter.post("/getdata", guestController.getData);
+guestRouter.post("/getSevendata", guestController.getSevenData);
 
 module.exports = guestRouter;

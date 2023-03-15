@@ -9,5 +9,7 @@ orderRouter.post("/delete", orderController.delete);
 orderRouter.post("/change", orderController.change);
 orderRouter.post("/search", orderController.search);
 orderRouter.post("/searchOrder", orderController.searchOrder);
+orderRouter.post("/getdata",orderController.getData)
+orderRouter.post("/getSevenData",orderController.getSevenData)
 
 module.exports = orderRouter;
