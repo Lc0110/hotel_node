@@ -31,6 +31,11 @@ class classifyServer {
     const result = await connection.execute(statement, [name, sort, cfy_id]);
     return result;
   }
+  async search(sort) {
+    const statement = "SELECT * FROM classify WHERE sort = ?;";
+    const result = await connection.execute(statement, [sort]);
+    return result;
+  }
 }
 
 module.exports = new classifyServer();

@@ -35,6 +35,11 @@ class AdvertServer {
     ]);
     return result;
   }
+  async search(sort) {
+    const statement = "SELECT * FROM advert WHERE sort = ?;";
+    const result = await connection.execute(statement, [sort]);
+    return result;
+  }
 }
 
 module.exports = new AdvertServer();

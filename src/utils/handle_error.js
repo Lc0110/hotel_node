@@ -36,6 +36,9 @@ app.on("error", (error, ctx) => {
     case "none_room":
       code = -1008;
       message = "房间不存在";
+    case "sort_conflict":
+      code = -1009;
+      message = "排序已存在";
   }
 
   ctx.body = { code, message };

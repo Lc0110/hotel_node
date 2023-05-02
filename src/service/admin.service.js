@@ -46,6 +46,9 @@ class AdminServer {
     return result;
   }
   async edit(adm_id, username, phonenumber, status, password) {
+    if (status === "启用" || status === "禁用") {
+      status = status === "启用" ? 1 : 0;
+    }
     console.log(adm_id, username, phonenumber, status, password);
     const statement =
       "UPDATE admin SET username =? ,phonenumber =?,status=?,password=? WHERE adm_id =?;";

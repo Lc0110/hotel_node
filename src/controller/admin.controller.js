@@ -36,12 +36,6 @@ class AdminController {
     const { adm_id, username, phonenumber, status, password } =
       ctx.request.body;
     console.log(ctx.request.body);
-    // let newStatus = "";
-    // if (status === "启用") {
-    //   newStatus = 1;
-    // } else {
-    //   newStatus = 0;
-    // }
     const result = await adminService.edit(
       adm_id,
       username,

@@ -47,6 +47,7 @@ class MemberServer {
     return result;
   }
   async createmember(avatarUrl, nickname, password, realname, phonenumber) {
+    console.log(123);
     if (avatarUrl !== "") {
       const statement =
         "INSERT INTO member (avatarurl,nickname,password,realname,phonenumber) VALUES (?,?,?,?,?);";
@@ -77,13 +78,13 @@ class MemberServer {
   }
   async get() {
     const statement =
-      "SELECT COUNT(*) as count FROM member WHERE date_sub(curdate(), interval 7 day) <= date(createAt);";
+      "SELECT COUNT(*) as count FROM member WHERE date_sub(curdate(), interval 6 day) <= date(createAt);";
     const result = await connection.query(statement);
     return result;
   }
   async getSevenData() {
     const statement =
-      "SELECT date_diffs.date_diff, IFNULL(COUNT(member.mem_id), 0) AS record_count FROM ( SELECT 1 AS date_diff UNION ALL SELECT 2 AS date_diff UNION ALL SELECT 3 AS date_diff UNION ALL SELECT 4 AS date_diff UNION ALL SELECT 5 AS date_diff UNION ALL SELECT 6 AS date_diff UNION ALL SELECT 7 AS date_diff ) AS date_diffs LEFT JOIN member ON DATEDIFF(curdate(), member.createAt) = date_diffs.date_diff AND member.createAt >= DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) GROUP BY date_diffs.date_diff;";
+      "SELECT date_diffs.date_diff, IFNULL( COUNT( member.mem_id ), 0 ) AS record_count FROM ( SELECT 0 AS date_diff UNION ALL SELECT 1 AS date_diff UNION ALL SELECT 2 AS date_diff UNION ALL SELECT 3 AS date_diff UNION ALL SELECT 4 AS date_diff UNION ALL SELECT 5 AS date_diff UNION ALL SELECT 6 AS date_diff ) AS date_diffs LEFT JOIN member ON DATEDIFF( curdate(), member.createAt ) = date_diffs.date_diff AND member.createAt >= DATE_SUB( DATE( NOW()), INTERVAL 7 DAY ) GROUP BY date_diffs.date_diff;";
     const result = await connection.query(statement);
     return result;
   }

@@ -12,6 +12,7 @@ class MainController {
     };
   }
   async deleteEva(ctx, next) {
+    console.log(ctx.request.body);
     const { id } = ctx.request.body;
     const result = await evaService.deleteeva(id);
     ctx.body = {
