@@ -11,5 +11,7 @@ orderRouter.post("/search", orderController.search);
 orderRouter.post("/searchOrder", orderController.searchOrder);
 orderRouter.post("/getdata",orderController.getData)
 orderRouter.post("/getSevenData",orderController.getSevenData)
+orderRouter.post("/getTurndata",orderController.getTurnData)
+orderRouter.post("/getTurnSevenData",orderController.getTurnSevenData)
 
 module.exports = orderRouter;

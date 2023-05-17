@@ -107,6 +107,18 @@ class orderServer {
     const result = await connection.query(statement);
     return result;
   }
+  async getTurn() {
+    const statement =
+      "SELECT SUM(order.price) as count FROM `order` WHERE date_sub(curdate(), interval 6 day) <= date(createAt) AND `status` <> 0;";
+    const result = await connection.query(statement);
+    return result;
+  }
+  async getTurnSevenData() {
+    const statement =
+      "SELECT date_diffs.date_diff, IFNULL(SUM(`order`.price), 0) AS record_count FROM ( SELECT 0 AS date_diff UNION ALL SELECT 1 AS date_diff UNION ALL SELECT 2 AS date_diff UNION ALL SELECT 3 AS date_diff UNION ALL SELECT 4 AS date_diff UNION ALL SELECT 5 AS date_diff UNION ALL SELECT 6 AS date_diff ) AS date_diffs LEFT JOIN `order` ON DATEDIFF(curdate(), `order`.createAt) = date_diffs.date_diff AND `order`.createAt >= DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) GROUP BY date_diffs.date_diff;";
+    const result = await connection.query(statement);
+    return result;
+  }
 }
 
 module.exports = new orderServer();
