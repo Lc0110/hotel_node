@@ -33,6 +33,7 @@ class guestController {
       is_tj,
       is_kt,
       is_window,
+      num,
     } = ctx.request.body;
     const result = await guestService.create(
       c_id,
@@ -45,7 +46,8 @@ class guestController {
       is_wifi,
       is_tj,
       is_kt,
-      is_window
+      is_window,
+      num
     );
     ctx.body = {
       message: "创建成功！",
@@ -74,6 +76,7 @@ class guestController {
       is_tj,
       is_kt,
       is_window,
+      num,
     } = ctx.request.body;
     const result = await guestService.edit(
       gst_id,
@@ -87,7 +90,8 @@ class guestController {
       is_wifi,
       is_tj,
       is_kt,
-      is_window
+      is_window,
+      num
     );
     ctx.body = {
       message: "修改成功！",
@@ -105,6 +109,14 @@ class guestController {
     const result = await guestService.getSevenData();
     ctx.body = {
       message: "获取成功",
+      data: result[0],
+    };
+  }
+  async changeNum(ctx, next) {
+    const { gst_id, num } = ctx.request.body;
+    const result = await guestService.changeNum(gst_id, num);
+    ctx.body = {
+      message: "修改成功",
       data: result[0],
     };
   }
